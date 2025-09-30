@@ -29,4 +29,24 @@ class LandingController extends Controller
         // For now, just flash a success message.
         return back()->with('status', 'Terima kasih! Pesan kamu sudah kami terima.');
     }
+
+    /**
+     * Redirect helper berdasarkan role user.
+     */
+    public static function redirectByRole($user)
+    {
+        switch ($user->role ?? null) {
+            case 'admin':
+                // Prefer route name if available
+                return redirect()->route('admin.dashboard');
+            case 'dokter':
+                return redirect('/dokter/dashboard');
+            case 'perawat':
+                return redirect('/perawat/dashboard');
+            case 'pasien':
+                return redirect('/pasien/dashboard');
+            default:
+                return redirect()->route('dashboard');
+        }
+    }
 }

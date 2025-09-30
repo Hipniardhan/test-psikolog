@@ -11,14 +11,11 @@ use App\Http\Controllers\LandingController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
-Route::get('/', function () {
-    if (Auth::check()) {
-        return Auth::user()->role === 'admin'
-            ? redirect()->route('admin.dashboard')
-            : redirect()->route('dashboard');
-    }
-    return redirect()->route('login');
-});
+// Public landing as home page (no auth middleware)
+Route::get('/', [LandingController::class, 'index'])->name('landing');
+
+// Optional public contact endpoint
+Route::post('/contact', [LandingController::class, 'contactSubmit'])->name('landing.contact.simple');
 
 Route::get('/dashboard', function () {
     $userId = Auth::id();
@@ -37,9 +34,13 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-// Public landing routes (separate from root redirect)
-Route::get('/landing', [LandingController::class, 'index'])->name('landing.index');
-Route::post('/landing/contact', [LandingController::class, 'contactSubmit'])->name('landing.contact');
+// Helper redirect after login: route to proper dashboard by role
+Route::get('/home', function () {
+    if (!Auth::check()) {
+        return redirect()->route('login');
+    }
+    return \App\Http\Controllers\LandingController::redirectByRole(Auth::user());
+})->name('home');
 
 // Admin routes
 Route::middleware(['auth','cekrole:admin'])->prefix('admin')->name('admin.')->group(function() {
