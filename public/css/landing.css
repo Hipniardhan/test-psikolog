@@ -1,3 +1,32 @@
-/* Public landing overrides - keep minimal */
+/* Landing page styles: light, responsive, and minimal */
+
+/* 1) Hero gradient background */
+.hero-section {
+	background: linear-gradient(135deg, rgba(13,110,253,0.08), rgba(32,201,151,0.08));
+	border-radius: .75rem;
+	padding: 2rem 1rem;
+}
+@media (min-width: 768px) {
+	.hero-section { padding: 3rem 2rem; }
+}
+
+/* 2) Soft card shadow utility */
+.shadow-soft,
+.card.shadow-sm { /* enhance existing shadow-sm slightly */
+	box-shadow: 0 2px 6px rgba(0,0,0,.06), 0 8px 20px rgba(0,0,0,.04) !important;
+}
+
+/* 3) Button hover effects */
+.btn { transition: transform .08s ease, box-shadow .15s ease; }
+.btn:hover { transform: translateY(-1px); }
+.btn:active { transform: translateY(0); }
+.btn-primary:hover {
+	box-shadow: 0 6px 14px rgba(13,110,253,.25);
+}
+.btn-outline-secondary:hover {
+	box-shadow: 0 6px 14px rgba(108,117,125,.25);
+}
+
+/* 4) Small typography touches */
 .navbar-brand { letter-spacing: .2px; }
 footer { font-size: .875rem; }
