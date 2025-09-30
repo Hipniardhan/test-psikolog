@@ -1,0 +1,7 @@
+/* Vite entry for PUBLIC layout: includes Bootstrap */
+@import "bootstrap/dist/css/bootstrap.min.css";
+
+/* Add public-specific tweaks below */
+.hero {
+  padding: 4rem 0;
+}

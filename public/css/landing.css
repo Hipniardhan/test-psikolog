@@ -1,0 +1,3 @@
+/* Public landing overrides - keep minimal */
+.navbar-brand { letter-spacing: .2px; }
+footer { font-size: .875rem; }
