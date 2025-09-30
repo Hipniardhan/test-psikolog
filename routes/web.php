@@ -7,6 +7,7 @@ use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\SoalController;
 use App\Http\Controllers\AdminPesertaController;
 use App\Http\Controllers\AdminHasilController;
+use App\Http\Controllers\LandingController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
@@ -35,6 +36,10 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+// Public landing routes (separate from root redirect)
+Route::get('/landing', [LandingController::class, 'index'])->name('landing.index');
+Route::post('/landing/contact', [LandingController::class, 'contactSubmit'])->name('landing.contact');
 
 // Admin routes
 Route::middleware(['auth','cekrole:admin'])->prefix('admin')->name('admin.')->group(function() {
