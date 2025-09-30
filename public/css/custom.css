@@ -1,0 +1,32 @@
+/* Custom enhancements */
+
+/* Layout helpers */
+body { background-color:#f8f9fb; }
+
+/* Progress Bar Styling */
+.progress { background-color:#e8edf3; }
+.progress-bar { font-weight:600; letter-spacing:.5px; }
+.progress-bar.bg-gradient {
+  background: linear-gradient(90deg,#0d6efd,#4ca8ff);
+}
+
+/* Question Card */
+.question-card .card { border-left:4px solid #0d6efd; }
+.question-card .list-group-item { cursor:pointer; }
+.question-card .list-group-item input[type=radio] { cursor:pointer; }
+
+/* Result Page */
+.display-6 { font-size:2.5rem; }
+
+/* Print adjustments */
+@media print {
+  .no-print, .d-print-none, .navbar, footer, .btn, a.btn, form button { display:none !important; }
+  body { background:#fff !important; }
+  .card { box-shadow:none !important; }
+}
+
+/* Table tweaks */
+.table td, .table th { vertical-align:middle; }
+
+/* Utility */
+.badge { text-transform:capitalize; }

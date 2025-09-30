@@ -1,0 +1,19 @@
+/* Custom overrides / additions (Bootstrap loaded via CDN) */
+body {
+	background-color: #f8f9fa;
+}
+
+.navbar-brand span.logo-accent {
+	color: #0d6efd;
+	font-weight: 600;
+}
+
+/* Card subtle shadow utility */
+.shadow-soft { box-shadow: 0 2px 4px rgba(0,0,0,.06), 0 4px 12px rgba(0,0,0,.04); }
+
+/* Progress bar styling for Big Five test */
+#progress-bar .progress { height: 10px; }
+#progress-bar .progress-bar { font-size: .65rem; }
+
+/* Print tweaks for hasil kepribadian */
+@media print { .d-print-none { display: none !important; } body { background: #fff; } }
