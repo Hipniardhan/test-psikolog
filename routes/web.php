@@ -10,6 +10,7 @@ use App\Http\Controllers\AdminHasilController;
 use App\Http\Controllers\LandingController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\HomeController;
 
 // Public landing as home page (no auth middleware)
 Route::get('/', [LandingController::class, 'index'])->name('landing');
@@ -34,13 +35,11 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-// Helper redirect after login: route to proper dashboard by role
-Route::get('/home', function () {
-    if (!Auth::check()) {
-        return redirect()->route('login');
-    }
-    return \App\Http\Controllers\LandingController::redirectByRole(Auth::user());
-})->name('home');
+// Helper redirect after login (Option A - Controller)
+Route::get('/home', [HomeController::class, 'redirect'])->name('home');
+
+// Option B - Middleware (alternative):
+// Route::get('/home', fn() => null)->middleware(['auth','redirect.by.role']);
 
 // Admin routes
 Route::middleware(['auth','cekrole:admin'])->prefix('admin')->name('admin.')->group(function() {
